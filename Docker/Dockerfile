@@ -3,9 +3,9 @@ FROM php:8.2-apache
 # Copiar todo FreshRSS al contenedor
 COPY . /var/www/html/
 
-# Habilitar mod_rewrite y ajustar permisos
-RUN a2enmod rewrite \
-    && chown -R www-data:www-data /var/www/html/
+# Ajustar permisos y habilitar mod_rewrite
+RUN chown -R www-data:www-data /var/www/html/ \
+    && a2enmod rewrite
 
 # Exponer puerto 80
 EXPOSE 80
