@@ -1,11 +1,6 @@
 <?php
 return [
-    // Esto fuerza a FreshRSS a usar la raíz del dominio y no /p/
-    'base_url' => '/',
-
-    // Opcional: lenguaje de la interfaz
-    'language' => 'en',
-
-    // Opcional: título que quieres que se vea
-    'title' => 'FreshRSS-Clean Render',
+    'base_url' => '/',   // 👈 esto obliga a usar raíz
+    'language' => 'es',
+    'title' => 'FreshRSS en Render',
 ];
