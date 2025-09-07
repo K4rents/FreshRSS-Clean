@@ -1,5 +1,11 @@
 <?php
 declare(strict_types=1);
 
-header('Location: p/', true, 301);
-include('index.html');
+// Configuración de FreshRSS
+$configFile = __DIR__ . '/data/config.custom.php';
+if (file_exists($configFile)) {
+    require $configFile;
+}
+
+// Cargar la aplicación FreshRSS
+require __DIR__ . '/index.php';
