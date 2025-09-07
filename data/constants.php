@@ -11,18 +11,18 @@ const FRESHRSS_VERSION = '1.25.0';
 define('FRESHRSS_PATH', __DIR__);
 
 // Carpeta de la librería
-define('LIB_PATH', __DIR__ . '/lib');
+define('LIB_PATH', __DIR__ . '/../lib');
 
 // Carpeta de la app
-define('APP_PATH', __DIR__ . '/app');
+define('APP_PATH', __DIR__ . '/../app');
 
 // Carpeta de datos
-define('DATA_PATH', __DIR__ . '/data');
+define('DATA_PATH', __DIR__);
 
 // Carpeta de extensiones
-define('EXTENSIONS_PATH', __DIR__ . '/extensions');
+define('EXTENSIONS_PATH', __DIR__ . '/../extensions');
 
-// Compatibilidad con PHP 8.2: redirigir logs a STDERR para Docker
+// Redirigir logs a STDERR para Docker
 if (!defined('COPY_SYSLOG_TO_STDERR')) {
-    define('COPY_SYSLOG_TO_STDERR', 0); // <<--- Cambiado de true a 0
+    define('COPY_SYSLOG_TO_STDERR', true);
 }
