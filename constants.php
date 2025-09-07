@@ -3,18 +3,21 @@ declare(strict_types=1);
 
 // Nombre de la aplicación
 const APP_NAME = 'FreshRSS';
-
-// Versión
 const FRESHRSS_VERSION = '1.25.0';
 
-// Rutas
+// Rutas principales
 define('FRESHRSS_PATH', __DIR__);
 define('LIB_PATH', __DIR__ . '/lib');
 define('APP_PATH', __DIR__ . '/app');
 define('DATA_PATH', __DIR__ . '/data');
 define('EXTENSIONS_PATH', __DIR__ . '/extensions');
 
-// Definir COPY_SYSLOG_TO_STDERR para compatibilidad Docker/PHP 8.2
+// ✅ Rutas críticas que te faltan
+define('USERS_PATH', DATA_PATH . '/users');
+define('LOGS_PATH', DATA_PATH . '/logs');
+define('TMP_PATH', DATA_PATH . '/tmp');
+
+// Redirigir logs a STDERR para Docker
 if (!defined('COPY_SYSLOG_TO_STDERR')) {
-    define('COPY_SYSLOG_TO_STDERR', 0);
+    define('COPY_SYSLOG_TO_STDERR', true);
 }
