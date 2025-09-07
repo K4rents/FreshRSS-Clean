@@ -22,7 +22,7 @@ define('DATA_PATH', __DIR__ . '/data');
 // Carpeta de extensiones
 define('EXTENSIONS_PATH', __DIR__ . '/extensions');
 
-// Redirigir logs a STDERR para Docker
+// Compatibilidad con PHP 8.2: redirigir logs a STDERR para Docker
 if (!defined('COPY_SYSLOG_TO_STDERR')) {
-    define('COPY_SYSLOG_TO_STDERR', true);
+    define('COPY_SYSLOG_TO_STDERR', 0); // <<--- Cambiado de true a 0
 }
