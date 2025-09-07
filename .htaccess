@@ -1,3 +1,6 @@
-RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^$ /p/ [L,R=301]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
