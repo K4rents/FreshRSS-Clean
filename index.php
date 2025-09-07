@@ -1,14 +1,13 @@
 <?php
 declare(strict_types=1);
 
-// Cargar constantes primero
+// Cargar constantes
 require(__DIR__ . '/constants.php');
 
-// Librerías base
+// Cargar librerías
 require(__DIR__ . '/lib/lib_rss.php');
-
-// Núcleo de la aplicación
 require(__DIR__ . '/app/FreshRSS.php');
 
-// Inicializar FreshRSS
-FreshRSS::main();
+// Inicializar la aplicación
+$controller = new Minz_FrontController();
+$controller->run();
