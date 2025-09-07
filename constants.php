@@ -1,29 +1,16 @@
-
 <?php
 declare(strict_types=1);
 
-// Nombre de la aplicación
-const APP_NAME = 'FreshRSS';
+// Directorios principales
+define('FRESHRSS_VERSION', '1.21'); // o la versión que tengas
+define('APP_DIR', __DIR__ . '/../app');
+define('LIB_DIR', __DIR__ . '/../lib');
+define('DATA_DIR', __DIR__); // si tu constants.php está en data
+define('EXTENSIONS_DIR', __DIR__ . '/../extensions');
 
-// Versión (ajústala según la release que uses)
-const FRESHRSS_VERSION = '1.25.0';
+// Configuración de cache y logs
+define('CACHE_DIR', DATA_DIR . '/cache');
+define('LOG_DIR', DATA_DIR . '/log');
 
-// Carpeta de la app
-define('FRESHRSS_PATH', __DIR__);
-
-// Carpeta de la librería
-define('LIB_PATH', __DIR__ . '/lib');
-
-// Carpeta de la app
-define('APP_PATH', __DIR__ . '/app');
-
-// Carpeta de datos
-define('DATA_PATH', __DIR__ . '/data');
-
-// Carpeta de extensiones
-define('EXTENSIONS_PATH', __DIR__ . '/extensions');
-
-// Redirigir logs a STDERR para Docker
-if (!defined('COPY_SYSLOG_TO_STDERR')) {
-    define('COPY_SYSLOG_TO_STDERR', true);
-}
+// URLs y paths base (ajusta si es necesario)
+define('BASE_URL', '/p'); // si tu FreshRSS corre en /p
