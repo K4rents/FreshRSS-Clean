@@ -1,17 +1,14 @@
 FROM php:8.2-apache
 
-# Copiar el código de tu repo (Render ya hace checkout aquí)
+# Copiar todo FreshRSS al contenedor
 COPY . /var/www/html/
 
-# Copiar el script de build
-COPY .render-build.sh /usr/local/bin/.render-build.sh
-RUN chmod +x /usr/local/bin/.render-build.sh
-RUN /usr/local/bin/.render-build.sh
+# Habilitar mod_rewrite y ajustar permisos
+RUN a2enmod rewrite \
+    && chown -R www-data:www-data /var/www/html/
 
-# Activar mod_rewrite
-RUN a2enmod rewrite
-
-# Exponer puerto
+# Exponer puerto 80
 EXPOSE 80
 
+# Iniciar Apache
 CMD ["apache2-foreground"]
