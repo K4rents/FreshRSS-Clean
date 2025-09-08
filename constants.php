@@ -12,10 +12,13 @@ define('APP_PATH', __DIR__ . '/app');
 define('DATA_PATH', __DIR__ . '/data');
 define('EXTENSIONS_PATH', __DIR__ . '/extensions');
 
-// ✅ Rutas críticas que te faltan
+// Rutas críticas para funcionamiento
 define('USERS_PATH', DATA_PATH . '/users');
 define('LOGS_PATH', DATA_PATH . '/logs');
 define('TMP_PATH', DATA_PATH . '/tmp');
+
+// Logging
+define('LOG_FILENAME', LOGS_PATH . '/freshrss.log');
 
 // Redirigir logs a STDERR para Docker
 if (!defined('COPY_SYSLOG_TO_STDERR')) {
