@@ -1,4 +1,0 @@
-# Redirige la raíz al directorio /p/
-RewriteEngine On
-RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^$ /p/ [L,R=301]
