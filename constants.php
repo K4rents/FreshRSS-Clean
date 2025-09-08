@@ -1,11 +1,13 @@
 <?php
 /**
  * FreshRSS - Constants configuration
- * Ruta de carpetas y archivos importantes
  */
 
-// Carpeta base del proyecto (donde está este constants.php)
+// Carpeta base del proyecto
 define('BASE_PATH', __DIR__);
+
+// Carpeta lib
+define('LIB_PATH', BASE_PATH . '/lib');
 
 // Carpeta de datos
 define('DATA_PATH', BASE_PATH . '/data');
