@@ -20,7 +20,9 @@ define('LOGS_PATH', DATA_PATH . '/logs');
 define('TMP_PATH', DATA_PATH . '/tmp');
 
 // Logging (archivo de log directo)
-define('LOG_FILENAME', LOGS_PATH . '/freshrss.log');
+// Logging (solo nombre, FreshRSS se encarga de ponerlo en LOGS_PATH)
+define('LOG_FILENAME', 'freshrss.log');
+
 
 // Redirigir logs a STDERR (útil en Docker)
 if (!defined('COPY_SYSLOG_TO_STDERR')) {
