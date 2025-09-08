@@ -23,3 +23,11 @@ chmod -R 777 /var/www/html/data
 chown -R www-data:www-data /var/www/html/data
 
 echo "✅ Preparación terminada."
+
+# Crear carpeta system dentro de users
+mkdir -p /var/www/html/data/users/system
+
+# Ajustar permisos
+chmod -R 755 /var/www/html/data/users/system
+chown -R www-data:www-data /var/www/html/data/users/system
+
