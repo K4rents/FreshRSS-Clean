@@ -1,4 +1,8 @@
 <?php
+
+if (!defined('COPY_SYSLOG_TO_STDERR')) {
+    define('COPY_SYSLOG_TO_STDERR', false);
+}
 /**
  * FreshRSS constants configuration
  * Ajustado para Render / Docker
