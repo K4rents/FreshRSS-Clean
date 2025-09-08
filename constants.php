@@ -1,59 +1,46 @@
 <?php
-// constants.php - FreshRSS para Render (versión completa)
+/**
+ * FreshRSS - Constants configuration
+ * Ruta de carpetas y archivos importantes
+ */
 
-// Directorio raíz de la instalación
-if (!defined('ROOT_PATH')) {
-    define('ROOT_PATH', __DIR__);
-}
+// Carpeta base del proyecto (donde está este constants.php)
+define('BASE_PATH', __DIR__);
 
-// Librerías
-if (!defined('LIB_PATH')) {
-    define('LIB_PATH', ROOT_PATH . '/lib/');
-}
+// Carpeta de datos
+define('DATA_PATH', BASE_PATH . '/data');
 
-// Directorio de datos
-if (!defined('DATA_PATH')) {
-    define('DATA_PATH', ROOT_PATH . '/data/');
-}
+// Carpeta de logs
+define('LOG_PATH', DATA_PATH . '/logs');
 
-// Directorio de logs
-if (!defined('LOGS_PATH')) {
-    define('LOGS_PATH', DATA_PATH . 'logs/');
-}
+// Archivo de log
+define('LOG_FILENAME', LOG_PATH . '/freshrss.log');
 
-// Archivo de logs principal
-if (!defined('LOG_FILENAME')) {
-    define('LOG_FILENAME', LOGS_PATH . 'freshrss.log');
-}
+// Carpeta de usuarios
+define('USERS_PATH', DATA_PATH . '/users');
 
-// Directorio de usuarios
-if (!defined('USERS_PATH')) {
-    define('USERS_PATH', DATA_PATH . 'users/');
-}
+// Carpeta system dentro de usuarios
+define('SYSTEM_PATH', USERS_PATH . '/system');
 
 // Carpeta temporal
-if (!defined('TMP_PATH')) {
-    define('TMP_PATH', DATA_PATH . 'tmp/');
-}
+define('TMP_PATH', DATA_PATH . '/tmp');
 
-// Carpeta system dentro de cada usuario
-if (!defined('SYSTEM_PATH')) {
-    define('SYSTEM_PATH', USERS_PATH . 'system/');
-}
-
-// Carpeta _ para Render
-if (!defined('UNDERSCORE_PATH')) {
-    define('UNDERSCORE_PATH', USERS_PATH . '_/');
-}
-
-// Copiar logs a stderr (necesario para Render)
+// Constante para evitar errores de syslog
 if (!defined('COPY_SYSLOG_TO_STDERR')) {
-    define('COPY_SYSLOG_TO_STDERR', true);
+    define('COPY_SYSLOG_TO_STDERR', false);
 }
 
-// Crear directorios si no existen
-foreach ([LOGS_PATH, USERS_PATH, SYSTEM_PATH, UNDERSCORE_PATH, TMP_PATH] as $dir) {
-    if (!is_dir($dir)) {
-        mkdir($dir, 0777, true);
+// Crear carpetas si no existen
+$folders = [LOG_PATH, USERS_PATH, SYSTEM_PATH, TMP_PATH];
+foreach ($folders as $folder) {
+    if (!file_exists($folder)) {
+        mkdir($folder, 0777, true);
+    }
+}
+
+// Ajustar permisos para asegurar que PHP pueda escribir
+foreach ($folders as $folder) {
+    if (file_exists($folder)) {
+        chmod($folder, 0777);
     }
 }
