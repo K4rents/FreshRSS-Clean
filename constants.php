@@ -1,53 +1,32 @@
 <?php
-declare(strict_types=1);
-
 /**
- * FreshRSS constants.php listo para Render
- * Crea las carpetas necesarias y define todas las constantes críticas
+ * FreshRSS constants configuration
+ * Ajustado para Render / Docker
  */
 
-// ----------------------------
-// Paths
-// ----------------------------
-define('BASE_PATH', __DIR__);                 // Ruta base de FreshRSS
-define('LIB_PATH', BASE_PATH . '/lib');       // Librerías
-define('DATA_PATH', BASE_PATH . '/data');     // Carpeta data
-define('USERS_PATH', DATA_PATH . '/users');   // Carpeta de usuarios
-define('SYSTEM_PATH', USERS_PATH . '/system');// Carpeta system
-define('LOGS_PATH', DATA_PATH . '/logs');     // Carpeta logs
-define('TMP_PATH', DATA_PATH . '/tmp');       // Carpeta temporal
+define('DATA_PATH', __DIR__ . '/data');          // Carpeta base de datos
+define('USERS_PATH', DATA_PATH . '/users');      // Carpeta de usuarios
+define('SYSTEM_PATH', USERS_PATH . '/system');   // Carpeta system dentro de usuarios
+define('LOGS_PATH', DATA_PATH . '/logs');        // Carpeta de logs
+define('TMP_PATH', DATA_PATH . '/tmp');          // Carpeta temporal
+define('LOG_FILENAME', LOGS_PATH . '/freshrss.log'); // Archivo de log
 
-// ----------------------------
 // Crear carpetas si no existen
-// ----------------------------
-$dirs = [
+$folders = [
     USERS_PATH,
     SYSTEM_PATH,
     LOGS_PATH,
     TMP_PATH
 ];
 
-foreach ($dirs as $dir) {
-    if (!is_dir($dir)) {
-        mkdir($dir, 0755, true);  // Solo crea si no existe
+foreach ($folders as $folder) {
+    if (!file_exists($folder)) {
+        mkdir($folder, 0755, true);
     }
 }
 
-// ----------------------------
-// Archivo de logs
-// ----------------------------
-define('LOG_FILENAME', LOGS_PATH . '/freshrss.log');
-
-// ----------------------------
-// Evitar errores por constantes faltantes
-// ----------------------------
-if (!defined('COPY_SYSLOG_TO_STDERR')) {
-    define('COPY_SYSLOG_TO_STDERR', false);
+// Asegurar permisos del archivo de log
+if (!file_exists(LOG_FILENAME)) {
+    touch(LOG_FILENAME);
+    chmod(LOG_FILENAME, 0664);
 }
-
-// ----------------------------
-// Opcional: Depuración mínima
-// ----------------------------
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
-
