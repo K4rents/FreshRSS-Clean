@@ -1,4 +1,12 @@
+
+
+
 <?php
+
+if (!defined('COPY_SYSLOG_TO_STDERR')) {
+    define('COPY_SYSLOG_TO_STDERR', false);
+}
+
 declare(strict_types=1);
 
 const APP_NAME = 'FreshRSS';
