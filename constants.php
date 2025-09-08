@@ -1,36 +1,49 @@
 <?php
+// constants.php - FreshRSS mínimo para Render
 
+// Directorio raíz de la instalación
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', __DIR__);
+}
+
+// Directorio de la librería
+if (!defined('LIB_PATH')) {
+    define('LIB_PATH', ROOT_PATH . '/lib/');
+}
+
+// Directorio de datos
+if (!defined('DATA_PATH')) {
+    define('DATA_PATH', ROOT_PATH . '/data/');
+}
+
+// Directorio de logs
+if (!defined('LOGS_PATH')) {
+    define('LOGS_PATH', DATA_PATH . 'logs/');
+}
+
+// Directorio de usuarios
+if (!defined('USERS_PATH')) {
+    define('USERS_PATH', DATA_PATH . 'users/');
+}
+
+// Directorio temporal
+if (!defined('TMP_PATH')) {
+    define('TMP_PATH', DATA_PATH . 'tmp/');
+}
+
+// Directorio system dentro de cada usuario
+if (!defined('SYSTEM_PATH')) {
+    define('SYSTEM_PATH', USERS_PATH . 'system/');
+}
+
+// Copiar logs al stderr (necesario para Render)
 if (!defined('COPY_SYSLOG_TO_STDERR')) {
-    define('COPY_SYSLOG_TO_STDERR', false);
+    define('COPY_SYSLOG_TO_STDERR', true);
 }
-/**
- * FreshRSS constants configuration
- * Ajustado para Render / Docker
- */
 
-define('DATA_PATH', __DIR__ . '/data');          // Carpeta base de datos
-define('USERS_PATH', DATA_PATH . '/users');      // Carpeta de usuarios
-define('SYSTEM_PATH', USERS_PATH . '/system');   // Carpeta system dentro de usuarios
-define('LOGS_PATH', DATA_PATH . '/logs');        // Carpeta de logs
-define('TMP_PATH', DATA_PATH . '/tmp');          // Carpeta temporal
-define('LOG_FILENAME', LOGS_PATH . '/freshrss.log'); // Archivo de log
-
-// Crear carpetas si no existen
-$folders = [
-    USERS_PATH,
-    SYSTEM_PATH,
-    LOGS_PATH,
-    TMP_PATH
-];
-
-foreach ($folders as $folder) {
-    if (!file_exists($folder)) {
-        mkdir($folder, 0755, true);
+// Asegurar que existan los directorios críticos
+foreach ([LOGS_PATH, USERS_PATH, SYSTEM_PATH, TMP_PATH] as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
     }
-}
-
-// Asegurar permisos del archivo de log
-if (!file_exists(LOG_FILENAME)) {
-    touch(LOG_FILENAME);
-    chmod(LOG_FILENAME, 0664);
 }
