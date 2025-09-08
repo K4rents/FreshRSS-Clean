@@ -10,11 +10,16 @@ cp -r . /var/www/html/
 echo "🔑 Ajustando permisos..."
 chown -R www-data:www-data /var/www/html/
 
-# Crear carpetas críticas dentro de data
+# Crear carpetas críticas
 mkdir -p /var/www/html/data/users
 mkdir -p /var/www/html/data/logs
 mkdir -p /var/www/html/data/tmp
 
+# Crear archivo de log vacío
+touch /var/www/html/data/logs/freshrss.log
+
 # Ajustar permisos
-chmod -R 777 /var/www/html/data/users /var/www/html/data/logs /var/www/html/data/tmp
+chmod -R 777 /var/www/html/data
 chown -R www-data:www-data /var/www/html/data
+
+echo "✅ Preparación terminada."
